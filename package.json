@@ -1,0 +1,7 @@
+{
+  "name": "cinemax-catalog",
+  "private": true,
+  "type": "module",
+  "scripts": { "start": "node server.mjs" },
+  "dependencies": { "cheerio": "^1.0.0" }
+}
