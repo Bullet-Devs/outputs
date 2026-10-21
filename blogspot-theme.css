@@ -238,7 +238,10 @@ h1,h2,h3,.brand{font-family:Poppins,Roboto,Arial,sans-serif}
 .nav-account{flex:0 0 auto;padding:8px 12px;color:#f4f5ff;background:rgba(139,124,255,.18);border:1px solid rgba(139,124,255,.32);border-radius:999px;font:inherit;font-size:clamp(.66rem,.72vw,.8rem);white-space:nowrap;cursor:pointer}
 .nav-account:hover{background:rgba(139,124,255,.32)}
 .account-dialog{width:min(540px,calc(100vw - 28px));max-width:none;max-height:min(88vh,760px);padding:0;color:#f5f6ff;background:transparent;border:0;overflow:visible}
-.account-dialog::backdrop{background:rgba(3,6,18,.78);backdrop-filter:blur(8px)}
+.account-close[hidden]{display:none!important}
+body.auth-pending,body.auth-required,body.auth-transition{min-height:100vh;background:#000!important}
+body.auth-pending #inicio,body.auth-pending .site-header,body.auth-pending .site-footer,body.auth-pending .detail-page,body.auth-required #inicio,body.auth-required .site-header,body.auth-required .site-footer,body.auth-required .detail-page,body.auth-transition #inicio,body.auth-transition .site-header,body.auth-transition .site-footer,body.auth-transition .detail-page{visibility:hidden!important}
+.account-dialog::backdrop{background:#000;backdrop-filter:none}
 .account-card{position:relative;padding:34px clamp(22px,5vw,48px);border:1px solid rgba(255,255,255,.13);border-radius:24px;background:linear-gradient(145deg,rgba(22,31,58,.98),rgba(9,14,32,.99));box-shadow:0 30px 90px rgba(0,0,0,.55)}
 .account-card .eyebrow{margin:0 0 8px;color:#a99cff;font-size:.72rem;font-weight:800;letter-spacing:.16em}
 .account-card h2{margin:0 40px 10px 0;font-size:clamp(1.5rem,4vw,2rem)}
@@ -254,10 +257,14 @@ h1,h2,h3,.brand{font-family:Poppins,Roboto,Arial,sans-serif}
 .profile-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:16px;margin:26px 0 18px}
 .profile-choice{display:grid;justify-items:center;gap:9px;padding:12px 8px;color:#e9ebf5;background:transparent;border:1px solid transparent;border-radius:14px;cursor:pointer}
 .profile-choice:hover{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.13)}
+.profile-choice.is-selected{position:relative;z-index:1;animation:profile-selected .62s cubic-bezier(.2,.75,.2,1) both}
+@keyframes profile-selected{0%{transform:scale(1);filter:brightness(1)}38%{transform:scale(1.16);filter:brightness(1.65);box-shadow:0 0 42px rgba(139,124,255,.52)}100%{transform:scale(1.22);filter:brightness(1.9);opacity:.25}}
 .profile-choice span{display:grid;place-items:center;width:76px;height:76px;color:#fff;background:linear-gradient(145deg,#8b7cff,#5548b8);border-radius:20px;font-size:2rem;font-weight:800}
 .profile-choice strong{font-size:.9rem;font-weight:600}
 .profile-choice.add-profile span{color:#c9c2ff;background:rgba(255,255,255,.08);border:1px dashed rgba(255,255,255,.28)}
 .account-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+body.catalog-reveal #inicio,body.catalog-reveal .site-header,body.catalog-reveal .site-footer,body.catalog-reveal .detail-page{animation:catalog-reveal .95s cubic-bezier(.2,.72,.2,1) both}
+@keyframes catalog-reveal{from{opacity:0;filter:blur(12px);transform:scale(1.012)}to{opacity:1;filter:blur(0);transform:scale(1)}}
 @media(max-width:760px){.nav-account{padding:7px 9px}.account-card{padding:30px 20px}.profile-choice span{width:64px;height:64px}}
 /* Volver lives at body level to avoid the detail backdrop's stacking context. */
 body:not(.detail-open) #close-detail{display:none!important}

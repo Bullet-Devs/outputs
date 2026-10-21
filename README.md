@@ -23,16 +23,16 @@ Si el puerto 4173 está ocupado, detené la instancia anterior con Ctrl+C. Como 
 
 ## Cuentas, perfiles, favoritos y opiniones
 
-CineMax incluye registro e inicio de sesión por correo y contraseña (no requiere Google), hasta cinco perfiles por cuenta y sincronización de favoritos, “Ver más tarde” y opiniones privadas de cada perfil. Para activar la sincronización:
+CineMax permite iniciar sesión con nombre de usuario y contraseña, hasta cinco perfiles por cuenta y sincronización de favoritos, “Ver más tarde” y opiniones privadas de cada perfil. Las cuentas las crea la dueña desde Supabase; la web no ofrece registro público. En la versión publicada, cada vez que se abre o recarga la página se solicita iniciar sesión y elegir un perfil; la sesión queda limitada a esa pestaña. Para activar la sincronización:
 
 1. Creá un proyecto gratuito en [Supabase](https://supabase.com/).
 2. En el proyecto, abrí **SQL Editor**, pegá y ejecutá `supabase/schema.sql`. Las políticas de seguridad limitan cada perfil y sus datos a la cuenta propietaria.
-3. En **Authentication → Providers**, habilitá Email. Si querés invitar únicamente a familiares, podés desactivar el registro público después de crear sus cuentas desde el panel de Authentication.
+3. En **Authentication → Sign In / Providers**, habilitá Email. En la configuración general de Authentication, desactivá **Allow new users to sign up** para que solo puedan entrar las cuentas que crees vos. Dejá **Confirm Email** habilitado; el script de creación confirma las direcciones internas.
 4. En **Project Settings → API**, copiá la URL del proyecto y la clave pública `publishable` (o `anon` heredada). Abrí `auth-config.js` junto a `server.mjs` y completá `url` y `anonKey`. No pongas ahí la clave `service_role` o `secret`.
 5. En **Authentication → URL Configuration**, agregá las direcciones desde las que se usará la web, por ejemplo `http://localhost:4173` y el dominio HTTPS del sitio publicado.
-6. Reiniciá CineMax. En la barra superior aparecerá **Iniciar sesión**. Creá una cuenta con correo y contraseña, confirmá el correo si Supabase lo solicita y agregá los perfiles.
+6. Para crear cada usuario, agregá `SUPABASE_URL` y `SUPABASE_SECRET_KEY` al `.env` local (sin espacios alrededor de `=`) y ejecutá `node scripts/create-cinemax-user.mjs` desde esta carpeta. El script pide el nombre y la contraseña inicial y crea la dirección interna `usuario@users.cinemax.invalid`; la persona escribe solo el usuario y la contraseña en CineMax. La clave secreta queda en tu computadora: nunca la copies a `auth-config.js`, al navegador ni a Render. El script usa el endpoint administrativo y no manda invitaciones por email.
 
-Sin configurar Supabase, favoritos y opiniones siguen guardándose localmente en ese navegador, y el resto del catálogo continúa funcionando. Esta primera versión usa correo como identificador de acceso; el nombre de usuario se guarda como nombre visible. Un inicio de sesión exclusivamente con nombre de usuario, sin correo, necesita una pequeña función segura del lado del servidor para buscar la cuenta sin exponer datos.
+Desde **Perfil → Cambiar contraseña**, cada persona puede elegir y guardar una nueva contraseña después de iniciar sesión. Como las cuentas usan direcciones internas que no reciben correo, no hay recuperación automática por email: si alguien la olvida, vos podés restablecerla desde **Authentication → Users** en Supabase. También podés seguir usando el correo de una cuenta ya existente para iniciar sesión mientras migrás esa cuenta al formato de usuario.
 
 `auth-config.js` está excluido de Git porque contiene la configuración propia del proyecto. Para otra copia o el alojamiento publicado, creá ese archivo a partir de `auth-config.example.js` y usá la misma URL y clave pública. La clave pública está diseñada para estar en el cliente; la protección de los datos depende de las políticas RLS incluidas en el SQL.
 
