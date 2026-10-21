@@ -1,0 +1,7 @@
+:focus-visible{outline:3px solid #a69cff!important;outline-offset:4px!important}
+.card:focus-visible{border-radius:14px;box-shadow:0 0 0 4px #a69cff88,0 16px 36px #0009}
+.button:focus-visible,.filter-chip:focus-visible,.episode-button:focus-visible,.source-option:focus-visible,.navbar a:focus-visible,.navbar button:focus-visible{position:relative;z-index:2;transform:scale(1.035)}
+.app-install-button{margin-top:18px;border:0;cursor:pointer}
+.app-install-button[hidden],.app-install-help[hidden]{display:none!important}
+.app-install-help{margin:14px 0 0;padding:12px 14px;color:#e3e6f3;background:#ffffff0a;border:1px solid #ffffff18;border-radius:12px;font-size:.85rem;line-height:1.55}
+@media (pointer:coarse){.button,.filter-chip,.episode-button,.source-option,.navbar a,.navbar button{min-height:44px}}

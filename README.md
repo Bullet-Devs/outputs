@@ -1,5 +1,11 @@
 # CineMax: catálogo y fichas
 
+## Instalar como aplicación y versión Android TV
+
+La web incluye un manifiesto PWA para instalarla desde Edge/Chrome en Windows y desde el navegador compatible en Android. En el diálogo **Descargar Aplicación** aparecen instrucciones para el dispositivo. El catálogo sigue necesitando conexión a internet.
+
+La carpeta `android-app/` contiene una app Android/Android TV que carga el mismo CineMax de Render y permite navegar con control remoto. El proyecto y la compilación por GitHub Actions están explicados en [android-app/README.md](android-app/README.md). El APK de prueba todavía debe compilarse con la dirección pública exacta de Render; Downloader requiere alojar después ese archivo en un enlace HTTPS público.
+
 ## Diseño adaptado de la plantilla anterior
 
 La apariencia de CineMax se adaptó desde la plantilla Blogger “Butaca TV”, publicada por [Plantillas Plus](https://www.plantillasplus.com/) bajo la licencia [Creative Commons Atribución-NoComercial 4.0 Internacional](https://creativecommons.org/licenses/by-nc/4.0/). Los estilos fueron modificados para integrarse con CineMax. El crédito y el enlace a la licencia aparecen en el pie de la web. Esta licencia permite compartir y adaptar el diseño con atribución para usos no comerciales; para monetizar el sitio hace falta autorización adicional del titular.

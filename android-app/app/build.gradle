@@ -1,0 +1,25 @@
+plugins {
+    id 'com.android.application'
+}
+
+def siteUrl = providers.gradleProperty('cinemaxUrl').orElse('https://cinemax-vlgd.onrender.com/').get()
+
+android {
+    namespace 'com.cinemax.family'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.cinemax.family'
+        minSdk 23
+        targetSdk 35
+        versionCode 1
+        versionName '1.0.0'
+        buildConfigField 'String', 'CINEMAX_URL', '"' + siteUrl.replace('\\', '\\\\').replace('"', '\\"') + '"'
+    }
+
+    buildFeatures { buildConfig true }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}

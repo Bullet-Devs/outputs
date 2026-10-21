@@ -1,0 +1,17 @@
+{
+  "id": "/",
+  "name": "CineMax",
+  "short_name": "CineMax",
+  "description": "Películas, series y anime en un solo catálogo.",
+  "lang": "es",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#080d20",
+  "theme_color": "#080d20",
+  "categories": ["entertainment", "video"],
+  "icons": [
+    { "src": "/icons/cinemax.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

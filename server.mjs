@@ -313,8 +313,8 @@ async function tmdbSeason(id,seasonNumber) {
   const result = await tmdb(`/tv/${id}/season/${seasonNumber}`);
   return (result.episodes || []).map(episode=>({id:`tmdb-episode:${id}:${seasonNumber}:${episode.episode_number}`,providerId:'tmdb',season:Number(seasonNumber),number:episode.episode_number,title:episode.name,overview:episode.overview || '',stillURL:episode.still_path?`${imageBase}/w500${episode.still_path}`:'',runtime:episode.runtime,airDate:episode.air_date}));
 }
-const staticFiles = new Map([['/','index.html'],['/index.html','index.html'],['/style.css','style.css'],['/reference-theme.css','reference-theme.css'],['/blogspot-theme.css','blogspot-theme.css'],['/ui-fixes.js','ui-fixes.js'],['/account.js','account.js'],['/auth-config.js','auth-config.js'],['/app.js','app.js'],['/animegg-adapter.js','animegg-adapter.js'],['/playback-sources.js','playback-sources.js']]);
-const mimeTypes = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8' };
+const staticFiles = new Map([['/','index.html'],['/index.html','index.html'],['/style.css','style.css'],['/reference-theme.css','reference-theme.css'],['/blogspot-theme.css','blogspot-theme.css'],['/pwa.css','pwa.css'],['/ui-fixes.js','ui-fixes.js'],['/account.js','account.js'],['/auth-config.js','auth-config.js'],['/app.js','app.js'],['/animegg-adapter.js','animegg-adapter.js'],['/playback-sources.js','playback-sources.js'],['/pwa.js','pwa.js'],['/service-worker.js','service-worker.js'],['/manifest.webmanifest','manifest.webmanifest'],['/icons/cinemax.svg','icons/cinemax.svg']]);
+const mimeTypes = { '.html':'text/html; charset=utf-8', '.css':'text/css; charset=utf-8', '.js':'text/javascript; charset=utf-8', '.webmanifest':'application/manifest+json; charset=utf-8', '.svg':'image/svg+xml' };
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://localhost');
   if (url.pathname === '/auth-config.js' && process.env.SUPABASE_URL && (process.env.SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_ANON_KEY)) {
