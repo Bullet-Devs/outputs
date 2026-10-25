@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CineMax</title>
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { display: grid; place-items: center; background: #080d20; color: #f5f5fa; font: 18px "Segoe UI", Arial, sans-serif; text-align: center; }
+  p { color: #b8bdd2; }
+  button { margin-top: 8px; padding: 14px 28px; border: 0; border-radius: 30px; background: #fff; color: #101426; font-size: 17px; cursor: pointer; }
+  small { display: block; margin-top: 16px; color: #9aa0b8; font-size: 14px; }
+</style>
+</head>
+<body>
+  <main>
+    <h2>No se pudo conectar con CineMax</h2>
+    <p>Revisá tu conexión a internet. Se reintenta solo cada 10 segundos.</p>
+    <button id="retry" autofocus>Reintentar ahora</button>
+    <small>Si el sitio estaba dormido, puede tardar un poco en despertar.</small>
+  </main>
+  <script>
+    const target = new URLSearchParams(location.search).get('retry');
+    function retry() { if (target && target.startsWith('https://')) location.href = target; }
+    document.getElementById('retry').addEventListener('click', retry);
+    setTimeout(retry, 10000);
+  </script>
+</body>
+</html>

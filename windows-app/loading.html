@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>CineMax</title>
+<style>
+  html, body { height: 100%; margin: 0; }
+  body { display: grid; place-items: center; background: #080d20; color: #f5f5fa; font: 18px "Segoe UI", Arial, sans-serif; text-align: center; }
+  .spinner { width: 54px; height: 54px; margin: 0 auto 22px; border: 5px solid rgba(255,255,255,.15); border-top-color: #8b7cff; border-radius: 50%; animation: spin 1s linear infinite; }
+  small { display: block; margin-top: 10px; color: #9aa0b8; font-size: 14px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+  <main>
+    <div class="spinner"></div>
+    <div>Conectando con CineMax…</div>
+    <small>La primera vez del día puede tardar hasta un minuto.</small>
+  </main>
+</body>
+</html>

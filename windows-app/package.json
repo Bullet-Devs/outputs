@@ -1,0 +1,47 @@
+{
+  "name": "cinemax-windows",
+  "version": "1.0.0",
+  "description": "CineMax para Windows",
+  "main": "main.js",
+  "author": "CineMax",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win --publish never"
+  },
+  "devDependencies": {
+    "electron": "^38.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.cinemax.family",
+    "productName": "CineMax",
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "loading.html",
+      "offline.html"
+    ],
+    "win": {
+      "icon": "build/icon.png",
+      "target": [
+        { "target": "nsis", "arch": ["x64"] },
+        { "target": "portable", "arch": ["x64"] }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "artifactName": "CineMax-Setup.${ext}"
+    },
+    "portable": {
+      "artifactName": "CineMax-Portable.${ext}"
+    }
+  }
+}
