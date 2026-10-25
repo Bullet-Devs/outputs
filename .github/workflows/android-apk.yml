@@ -10,7 +10,7 @@ on:
         type: string
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   build:
@@ -40,3 +40,10 @@ jobs:
           path: android-app/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
           retention-days: 30
+      - name: Publish APK to a public download link
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android-app/app/build/outputs/apk/debug/app-debug.apk CineMax.apk
+          gh release delete android --yes --cleanup-tag --repo "${{ github.repository }}" || true
+          gh release create android CineMax.apk --repo "${{ github.repository }}" --target "${{ github.sha }}" --title "CineMax Android" --notes "APK de CineMax para Android y Android TV"
